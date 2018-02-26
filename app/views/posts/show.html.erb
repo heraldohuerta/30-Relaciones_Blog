@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="m-3">
+<hr>
+<div class="row">
+  <div class="col-sm-4">
+    <h1 class="text-center">Post</h1>
+        <div class="container">
+          <div class="jumbotron">
+            <h1><%= @post.title %></h1>
+            <p> </p>
+          <p><strong>Content:</strong></p>
+          <p>  <%= @post.content %></p>
+          <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-primary" %> |
+          <%= link_to 'Back', posts_path,class:"btn btn-primary" %>
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-4">
+
+    <h1 class="text-center">Comentario</h1>
+    <div class="container">
+          <div class="jumbotron">
+            <%= form_with(model: [@post,Comment.new], local: true) do |f| %>
+              <!-- <%= hidden_field_tag :post_id, @post.id %> -->
+              <%= f.text_area :content, cols: 40, rows: 10%><br>
+              <%= f.submit :enviar,class:"btn btn-primary"  %>
+            <% end %>
+          </div>
+     </div>
+  </div>
+  <div class="col-sm-4">
+    <h1>Comentarios</h1>
+      <ol style="background-color:rgba(119, 118, 111, 0.53)">
+        <% @comment.each do |comm| %>
+            <li><%= comm.content %></li>
+        <% end %>
+    </ol>
+
+  </div>
+</div>
+</div>
